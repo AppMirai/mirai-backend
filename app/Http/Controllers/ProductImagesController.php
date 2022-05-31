@@ -54,7 +54,7 @@ class ProductImagesController extends Controller
      * @param  \App\Models\ProductImages  $productImages
      * @return \Illuminate\Http\Response
      */
-    public function destroy($productId, $productImages)
+    public function destroy($productImages)
     {
         return $productImages;
         $productImage = ProductImages::find($productImages);
