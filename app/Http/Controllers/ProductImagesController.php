@@ -56,7 +56,6 @@ class ProductImagesController extends Controller
      */
     public function destroy($productImages)
     {
-        return $productImages;
         $productImage = ProductImages::find($productImages);
 
         $productImage->delete();
