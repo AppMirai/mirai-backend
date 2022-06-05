@@ -42,7 +42,7 @@ class AuthApi extends Controller
             'password' => 'required|min:4',
         ]);
 
-        if ( Auth::attempt($cred) ) {
+        if ( !Auth::attempt($cred) ) {
             return response()->json([
                 'message'=>'Unauthorized', 
             ], 401);
