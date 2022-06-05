@@ -37,7 +37,7 @@ class AuthApi extends Controller
     public function login(Request $request)
     {
         $cred = $request->validate([
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email',
             'password' => 'required|min:4',
         ]);
 
