@@ -58,5 +58,10 @@ class AuthApi extends Controller
             'message'=>'You have successfully logged out and token was successfully deleted.', 
         ]);
     }
+
+    public function user_profile()
+    {
+        return response()->json(Auth::user());
+    }
 }
 
