@@ -14,9 +14,11 @@ Route::post('products/{product}/tambah-gambar', [ProductImagesController::class,
 Route::post('products/{product}/update-gambar/{productImages}', [ProductImagesController::class, 'update']);
 Route::get('products/{product}/delete-gambar/{productImages}', [ProductImagesController::class, 'destroy']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    Route::post('logout', [AuthApi::class, 'logout']);
-    Route::post('user', function(Request $request) {
-        return Auth::user();
-    });
-});
+Route::middleware('auth:sanctum')->get('/user', [AuthApi::class, 'user_profile']);
+
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     Route::post('logout', [AuthApi::class, 'logout']);
+//     Route::post('user', function(Request $request) {
+//         return Auth::user();
+//     });
+// });
