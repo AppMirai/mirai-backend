@@ -10,6 +10,8 @@ COPY ./ ./
 
 RUN npx prisma migrate deploy
 
+RUN npx prisma generate
+
 EXPOSE 5000
 
 CMD ["npm", "start"]
