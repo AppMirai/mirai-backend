@@ -22,4 +22,4 @@ app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 // Static Routes
 app.use('/public', express.static('public'))
 
-app.listen(process.env.APP_PORT || 5000, () => console.log("🚀 Mirai API Ready On Port 5000"));
+app.listen(process.env.APP_PORT || 5000, () => console.log(`🚀 Mirai API Ready On Port ${process.env.APP_PORT || 5000}`));
