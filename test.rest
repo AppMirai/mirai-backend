@@ -1,0 +1,56 @@
+@host = http://localhost:5000/api
+
+@contentType = application/json
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJyZWhhbmFuYUBnbWFpbC5jb20iLCJpYXQiOjE2NjUwMzI0ODN9.qtWd2R3ycVx1X8dKtyQHXNM6zunF4w1ZT7n2F-lykEc
+
+### User ###
+# Register
+POST {{host}}/users/register
+Content-Type: {{contentType}}
+
+{
+    "full_name": "Rehan",
+    "email": "rehanana@gmail.com",
+    "password": "password"
+}
+###
+
+# Login
+POST {{host}}/users/login
+Content-Type: {{contentType}}
+
+{
+    "email": "rehanana@gmail.com",
+    "password": "password1234"
+}
+###
+
+# Profile
+GET {{host}}/users/profile
+Content-Type: {{contentType}}
+Authorization: Bearer {{token}}
+
+###
+
+# Change Profile
+POST {{host}}/users/update-profile
+Content-Type: {{contentType}}
+Authorization: Bearer {{token}}
+
+{
+    "full_name": "Rehan Cokasu"
+}
+###
+
+# Change Profile
+POST {{host}}/users/change-password
+Content-Type: {{contentType}}
+Authorization: Bearer {{token}}
+
+{
+    "old_password": "password123",
+    "new_password": "password1234",
+    "new_password_confirm": "password1234"
+}
+###
