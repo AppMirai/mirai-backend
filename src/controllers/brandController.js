@@ -16,7 +16,6 @@ module.exports = {
                     products: {
                         include: {
                             product_images_detail: {},
-                            brand: {},
                             category: {},
                             product_shades: {},
                         }
@@ -38,7 +37,6 @@ module.exports = {
                     products: {
                         include: {
                             product_images_detail: {},
-                            brand: {},
                             category: {},
                             product_shades: {},
                         }
