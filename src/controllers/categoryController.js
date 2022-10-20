@@ -12,7 +12,14 @@ module.exports = {
         try {
             const categories = await prisma.categories.findMany({
                 include: {
-                    products: {}
+                    products: {
+                        include: {
+                            product_images_detail: {},
+                            brand: {},
+                            category: {},
+                            product_shades: {},
+                        }
+                    }
                 }
             });
 
@@ -27,7 +34,14 @@ module.exports = {
 
             const category = await prisma.categories.findUnique({
                 where: { id: Number(id) }, include: {
-                    products: {}
+                    products: {
+                        include: {
+                            product_images_detail: {},
+                            brand: {},
+                            category: {},
+                            product_shades: {},
+                        }
+                    }
                 }
             });
             if (!category) return res.status(404).json({ message: 'failed get data!' });
