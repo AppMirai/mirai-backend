@@ -8,7 +8,14 @@ module.exports = {
         try {
             const likes = await prisma.product_like.findMany({
                 include: {
-                    product: {}
+                    product: {
+                        include: {
+                            product_images_detail: {},
+                            brand: {},
+                            category: {},
+                            product_shades: {},
+                        }
+                    }
                 },
                 where: {
                     user_id: req.user.id
