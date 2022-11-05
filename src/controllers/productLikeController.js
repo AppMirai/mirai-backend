@@ -61,7 +61,6 @@ module.exports = {
                     }
                 }
             });
-            if (!check_like) return res.status(404).json({ message: 'failed get data!' });
 
             const like = await prisma.product_like.upsert({
                 where: {
@@ -104,23 +103,19 @@ module.exports = {
                 return;
             }
 
-            const checkLike = await prisma.product_like.findFirst({
+            const check_like = await prisma.product_like.findFirst({
                 where: {
-                    product_id: Number(product_id)
+                    AND: {
+                        product_id: Number(product_id),
+                        user_id: req.user.id
+                    }
                 }
             });
-            if (!checkLike) {
-                res.status(404).json({
-                    message: 'failed get data!',
-                    data: null
-                });
-
-                return;
-            }
+            if (!check_like) return res.status(404).json({ message: 'failed get data!' });
 
             await prisma.product_like.delete({
                 where: {
-                    product_id: checkLike.product_id
+                    id: check_like.id,
                 }
             });
 
