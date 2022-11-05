@@ -53,9 +53,19 @@ module.exports = {
             const product = await prisma.products.findUnique({ where: { id: Number(product_id) } });
             if (!product) return res.status(404).json({ message: 'failed get data!' });
 
+            const check_like = await prisma.product_like.findFirst({
+                where: {
+                    AND: {
+                        product_id: Number(product_id),
+                        user_id: req.user.id
+                    }
+                }
+            });
+            if (!check_like) return res.status(404).json({ message: 'failed get data!' });
+
             const like = await prisma.product_like.upsert({
                 where: {
-                    product_id: product.id
+                    id: check_like.id
                 },
                 create: {
                     product_id: product.id,
