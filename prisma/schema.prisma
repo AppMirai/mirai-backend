@@ -61,7 +61,7 @@ model product_images_detail {
 model product_like {
   id         Int      @id @default(autoincrement())
   user_id    Int
-  product_id Int      @unique
+  product_id Int
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
   users      users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
