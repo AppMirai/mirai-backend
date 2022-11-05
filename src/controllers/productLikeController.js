@@ -62,23 +62,21 @@ module.exports = {
                 }
             });
 
-            const like = await prisma.product_like.upsert({
-                where: {
-                    id: check_like.id
-                },
-                create: {
-                    product_id: product.id,
-                    user_id: req.user.id
-                },
-                update: {
-                    product_id: product.id,
-                }
-            });
+            if (check_like) {
+                return res.status(200).json({ message: 'product has liked' });
+            } else {
+                const like = await prisma.product_like.create({
+                    data: {
+                        product_id: product.id,
+                        user_id: req.user.id
+                    },
+                });
 
-            res.status(201).json({
-                message: 'success create data!',
-                data: like
-            });
+                res.status(201).json({
+                    message: 'success create data!',
+                    data: like
+                });
+            }
         } catch (error) {
             res.status(500).send(error.message)
         }
